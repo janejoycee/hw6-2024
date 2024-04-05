@@ -12,12 +12,14 @@ window.addEventListener("load", function() {
 var video = document.querySelector('.video');
 var play_button = document.querySelector('#play');
 
+document.querySelector("#volume").innerHTML = Math.round(video.volume * 100) + "%";
 
 play_button.addEventListener("click", function() {
 	video.play();
 	console.log("Play Video")
 	video.volume
-	console.log("Current volume: " + (video.volume * 100) + "%");
+	// console.log("Current volume: " + (video.volume) + "%");
+
 
 	// Video volume [ after ] play is not displaying correctly. Do you have the correct number? Did you remember the % sign?
 });
@@ -110,19 +112,18 @@ slider.addEventListener("change", function () {
 	vol_info.innerHTML = Math.round(video.volume * 100) + "%";
 });
 
-var vintage = document.querySelector('#vintage')
+var vintage = document.querySelector('#vintage');
 
 vintage.addEventListener("click", function() {
 	video.style.borderRadius = '10px';
-	video.border.style = '2px solid grey'
+	video.style.border = '2px solid grey'; 
 	video.style.filter = 'grayscale(100%)';
 });
 
 document.querySelector('#orig').addEventListener("click", function () {
 	video.style.borderRadius = '';
-	video.border.style = ''
+	video.style.border = ''; 
 	video.style.filter = '';
-
 });
 
 
