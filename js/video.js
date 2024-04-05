@@ -113,10 +113,17 @@ slider.addEventListener("change", function () {
 var vintage = document.querySelector('#vintage')
 
 vintage.addEventListener("click", function() {
+	video.style.borderRadius = '10px';
+	video.border.style = '2px solid grey'
+	video.style.filter = 'grayscale(100%)';
+});
 
-})
+document.querySelector('#orig').addEventListener("click", function () {
+	video.style.borderRadius = '';
+	video.border.style = ''
+	video.style.filter = '';
 
-
+});
 
 
 
