@@ -115,15 +115,17 @@ slider.addEventListener("change", function () {
 var vintage = document.querySelector('#vintage');
 
 vintage.addEventListener("click", function() {
-	video.style.borderRadius = '10px';
-	video.style.border = '2px solid grey'; 
+	video.style.borderRadius = '20px';
+	video.style.border = '4px solid lightgrey'; 
 	video.style.filter = 'grayscale(100%)';
+	video.style.padding = '0';
 });
 
 document.querySelector('#orig').addEventListener("click", function () {
 	video.style.borderRadius = '';
 	video.style.border = ''; 
 	video.style.filter = '';
+	video.style.padding = '';
 });
 
 
