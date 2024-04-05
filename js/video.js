@@ -19,9 +19,6 @@ play_button.addEventListener("click", function() {
 	video.volume
 	document.querySelector("#volume").innerHTML = Math.round(video.volume * 100) + "%";
 	// console.log("Current volume: " + (video.volume) + "%");
-
-
-	// Video volume [ after ] play is not displaying correctly. Do you have the correct number? Did you remember the % sign?
 });
 
 var pause_button = document.querySelector('#pause');
@@ -34,39 +31,21 @@ pause_button.addEventListener("click", function() {
 });
 // paused function works
 
-var slow_button = document.querySelector("#slower");
-var video = document.querySelector('.video');
-var count = 0
-
-function slow_down() {
-    video.playbackRate *= 0.9;
-    // var percentage = video.playbackRate * 100; 
+document.querySelector("#slower").addEventListener("click", function() {
 	console.log("Slow down video")
-	count += 1;
-	console.log("Speed is " + video.playbackRate )
-    // console.log('Slowed down speed:', Math.round(percentage) + "%");
-};
+	video.playbackRate *= 0.9;
+	console.log("Speed is " + video.playbackRate)
 
-slow_button.addEventListener("click", slow_down);
-// slow down function works
+});
 
-var speed_button = document.querySelector('#faster');
+document.querySelector('#faster').addEventListener("click", function () {
+	console.log("Speed up video");
+	video.playbackRate /= 0.9;
+	console.log('Speed is ' + video.playbackRate);
+});
 
-function speed_up() {
-	var current_rate = video.playbackRate;
-	console.log("Current rate: " + current_rate);
+// need help on increasing the speed up rate
 
-	var increase = count * 0.1;
-	console.log("Speed up Video");
-
-	var new_rate = current_rate + increase;
-	var percentage = new_rate * 100; 
-
-	console.log('Speed is ' + new_rate);
-};
-
-speed_button.addEventListener("click", speed_up);
-// this is not speeding up the correct amount
 
 var skip_button = document.querySelector("#skip");
 var current_time = video.currentTime; // current playback time in seconds
@@ -87,19 +66,18 @@ function advance_time() {
 skip_button.addEventListener("click", advance_time);
 
 var mute_button = document.querySelector("#mute");
-var previousVolume = 1.0;
 
 function get_muted() {
     if (mute_button.innerHTML == "Mute") {
-		previousVolume = video.volume
-        video.volume = 0.0;
+        video.muted = true;
         mute_button.innerHTML = "Unmute"; 
-        console.log("Mute");
+        console.log(video.muted);
     } else { 
-		video.volume = previousVolume;
+		video.muted = false;
         mute_button.innerHTML = "Mute"; 
         console.log("The current volume is " + video.volume);
 		console.log("Unmute");
+		console.log(video.muted);
     }
 };
 
@@ -114,23 +92,26 @@ slider.addEventListener("change", function () {
 	vol_info.innerHTML = Math.round(video.volume * 100) + "%";
 });
 
-var vintage = document.querySelector('#vintage');
+// var vintage = document.querySelector('#vintage');
 
-vintage.addEventListener("click", function() {
-	video.style.borderRadius = '20px';
-	video.style.border = '4px solid lightgrey'; 
-	video.style.filter = 'grayscale(100%)';
-	video.style.padding = '0';
-});
+// vintage.addEventListener("click", function() {
+// 	video.style.borderRadius = '20px';
+// 	video.style.border = '4px solid lightgrey'; 
+// 	video.style.filter = 'grayscale(100%)';
+// 	video.style.padding = '0';
+// });
 
-document.querySelector('#orig').addEventListener("click", function () {
-	video.style.borderRadius = '';
-	video.style.border = ''; 
-	video.style.filter = '';
-	video.style.padding = '';
-});
+// document.querySelector('#orig').addEventListener("click", function () {
+// 	video.style.borderRadius = '';
+// 	video.style.border = ''; 
+// 	video.style.filter = '';
+// 	video.style.padding = '';
+// });
 
-
+document.querySelector('#vintage').addEventListener("click", function() {
+	document.querySelector('#vintage').classList.remove("oldSchool");
+}
+);
 
 
 
