@@ -38,9 +38,11 @@ var count = 0
 
 function slow_down() {
     video.playbackRate *= 0.9;
-    var percentage = video.playbackRate * 100; 
+    // var percentage = video.playbackRate * 100; 
+	console.log("Slow down video")
 	count += 1;
-    console.log('Slowed down speed:', Math.round(percentage) + "%");
+	console.log("Speed is " + video.playbackRate )
+    // console.log('Slowed down speed:', Math.round(percentage) + "%");
 };
 
 slow_button.addEventListener("click", slow_down);
@@ -53,12 +55,12 @@ function speed_up() {
 	console.log("Current rate: " + current_rate);
 
 	var increase = count * 0.1;
-	console.log("INC BY: " + increase);
+	console.log("Speed up Video");
 
 	var new_rate = current_rate + increase;
 	var percentage = new_rate * 100; 
 
-	console.log('Speed up speed:', Math.round(percentage) + "%");
+	console.log('Speed is ' + new_rate);
 };
 
 speed_button.addEventListener("click", speed_up);
@@ -70,13 +72,13 @@ var current_time = video.currentTime // current playback time in seconds
 function advance_time() {
     if (video.ended) {
         video.currentTime = 10; 
-        console.log('Restarted the video');
-		console.log("Current time is " + Math.round(video.currentTime) + " seconds");
+        console.log('Skip ahead');
+		console.log("Current time is " + video.currentTime);
 
     } else {
         video.currentTime += 10; 
-        console.log('Advanced playback time by 10 seconds')
-		console.log("Current time is " + Math.round(video.currentTime) + " seconds");
+        console.log('Skip ahead')
+		console.log("Current time is " + video.currentTime);
     }
 };
 
@@ -88,17 +90,32 @@ function get_muted() {
     if (mute_button.innerHTML == "Mute") {
         video.volume = 0.0;
         mute_button.innerHTML = "Unmute"; 
-        console.log("The current volume is " + video.volume);
+        console.log("Mute");
     } else {
         video.volume = current_vol;
         mute_button.innerHTML = "Mute"; 
         console.log("The current volume is " + video.volume);
+		console.log("Unmute")
     }
-}
+};
 
 mute_button.addEventListener("click", get_muted);
 
 var slider = document.querySelector("#slider");
+var vol_info = document.querySelector("#volume");
+
+slider.addEventListener("change", function () {
+	video.volume = slider.value / 100;
+	console.log("The current value is " + video.volume);
+	vol_info.innerHTML = Math.round(video.volume * 100) + "%";
+});
+
+var vintage = document.querySelector('#vintage')
+
+vintage.addEventListener("click", function() {
+
+})
+
 
 
 
