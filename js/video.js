@@ -12,12 +12,12 @@ window.addEventListener("load", function() {
 var video = document.querySelector('.video');
 var play_button = document.querySelector('#play');
 
-document.querySelector("#volume").innerHTML = Math.round(video.volume * 100) + "%";
 
 play_button.addEventListener("click", function() {
 	video.play();
 	console.log("Play Video")
 	video.volume
+	document.querySelector("#volume").innerHTML = Math.round(video.volume * 100) + "%";
 	// console.log("Current volume: " + (video.volume) + "%");
 
 
@@ -68,8 +68,8 @@ function speed_up() {
 speed_button.addEventListener("click", speed_up);
 // this is not speeding up the correct amount
 
-var skip_button = document.querySelector("#skip")
-var current_time = video.currentTime // current playback time in seconds
+var skip_button = document.querySelector("#skip");
+var current_time = video.currentTime; // current playback time in seconds
 
 function advance_time() {
     if (video.ended) {
@@ -79,7 +79,7 @@ function advance_time() {
 
     } else {
         video.currentTime += 10; 
-        console.log('Skip ahead')
+        console.log('Skip ahead');
 		console.log("Current time is " + video.currentTime);
     }
 };
@@ -87,17 +87,19 @@ function advance_time() {
 skip_button.addEventListener("click", advance_time);
 
 var mute_button = document.querySelector("#mute");
+var previousVolume = 1.0;
+
 function get_muted() {
-    var current_vol = video.volume;
     if (mute_button.innerHTML == "Mute") {
+		previousVolume = video.volume
         video.volume = 0.0;
         mute_button.innerHTML = "Unmute"; 
         console.log("Mute");
-    } else {
-        video.volume = current_vol;
+    } else { 
+		video.volume = previousVolume;
         mute_button.innerHTML = "Mute"; 
         console.log("The current volume is " + video.volume);
-		console.log("Unmute")
+		console.log("Unmute");
     }
 };
 
